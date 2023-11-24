@@ -1,0 +1,4 @@
+*.o
+*.s
+mandelbrot
+mandelbrot-debug
