@@ -1,14 +1,14 @@
 use num::complex::Complex;
 
 fn mandelbrot() {
-    let width = 1600;
-    let height = 600;
+    let width = 16000;
+    let height = 6000;
 
     let min = Complex::new(-2.1, -1.2);
     let max = Complex::new(0.6, 1.2);
 
-    let iterations = 32;
-    let colors = "abc.-+*%#$@ ";
+    let iterations = 64;
+    let colors = "abcdefhij.-+*%#$@ ";
 
     let inc_real = Complex::new((max - min).re
                                 / (width as f64),

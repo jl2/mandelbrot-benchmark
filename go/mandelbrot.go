@@ -7,11 +7,11 @@ import (
 )
 
 const (
-	width      = 1600
-	height     = 600
+	width      = 16000
+	height     = 6000
 	min        = -2.1 - 1.2i
 	max        = 0.6 + 1.2i
-	iterations = 32
+	iterations = 64
 	colors     = "abcdefhij.-+*%#$@ "
 )
 

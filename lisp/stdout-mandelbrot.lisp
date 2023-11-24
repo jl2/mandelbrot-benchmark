@@ -18,12 +18,12 @@
 (defun mandelbrot ()
   (declare (optimize (speed 3) (space 3) (debug 0) (safety 0)))
   (let* ((stream t)
-         (width 1600)
-         (height 600)
+         (width 16000)
+         (height 6000)
          (min #C(-2.1d0 -1.2d0))
          (max #C(0.6d0 1.2d0))
-         (iterations 32)
-         (colors "abc.-+*%#$@ ")
+         (iterations 64)
+         (colors "abcdefhij.-+*%#$@ ")
 
          ;; real increment per pixel
          (inc-real (complex (/ (realpart (- max min))

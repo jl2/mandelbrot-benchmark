@@ -2,12 +2,12 @@
 #include <complex>
 
 void mandelbrot() {
-    const uint width = 1600;
-    const uint height = 600;
+    const uint width = 16000;
+    const uint height = 6000;
     const std::complex<double> min(-2.1, -1.2);
     const std::complex<double> max(0.6, 1.2);
-    const uint iterations = 32;
-    const std::string colors = "abc.-+*%#$@ ";
+    const uint iterations = 64;
+    const std::string colors = "abcdefhij.-+*%#$@ ";
     const std::complex<double> inc_real((max - min).real()/ width,
                                         0.0);
     const std::complex<double> inc_imag(0.0,
