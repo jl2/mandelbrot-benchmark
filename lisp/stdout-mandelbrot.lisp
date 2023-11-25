@@ -18,11 +18,11 @@
 (defun mandelbrot ()
   (declare (optimize (speed 3) (space 3) (debug 0) (safety 0)))
   (let* ((stream t)
-         (width 16000)
-         (height 6000)
+         (width 1600)
+         (height 600)
          (min #C(-2.1d0 -1.2d0))
          (max #C(0.6d0 1.2d0))
-         (iterations 64)
+         (iterations 32)
          (colors "abcdefhij.-+*%#$@ ")
 
          ;; real increment per pixel
@@ -34,7 +34,7 @@
          (inc-imag (complex 0.0d0
                             (/ (imagpart (- max min))
                                height))))
-
+    (declare (dynamic-extent stream width height min max iterations colors inc-real inc-imag))
     ;; imaginary part on the y axis
     (loop
       :for row :below height
