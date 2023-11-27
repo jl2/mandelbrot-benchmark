@@ -3,19 +3,22 @@ package main
 
 import (
 	"fmt"
-	"math/cmplx"
 )
 
-const (
-	width      = 16000
-	height     = 6000
-	min        = -2.1 - 1.2i
-	max        = 0.6 + 1.2i
-	iterations = 64
-	colors     = "abcdefhij.-+*%#$@ "
-)
+func norm( z complex128) float64 {
+	return real(z) * real(z) + imag(z)*imag(z);
+}
 
 func main() {
+	const (
+		width      = 16000
+		height     = 6000
+		min        = -2.1 - 1.2i
+		max        = 0.6 + 1.2i
+		iterations = 64
+		colors     = "abcdefhij.-+*%#$@ "
+	)
+
 	incX := complex(real(max-min)/width, 0)
 	incY := complex(0, imag(max-min)/height)
 	c := min
@@ -25,7 +28,7 @@ func main() {
 			var i int
 			for i = 0; i < iterations; i++ {
 				z = z*z + c // The core Mandelbrot equation!
-				if cmplx.Abs(z) > 2 {
+				if norm(z) > 4.0 {
 					break
 				}
 			}

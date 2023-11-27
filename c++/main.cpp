@@ -24,8 +24,8 @@ void mandelbrot() {
             std::complex<double> z(0.0, 0.0);
 
             for (iter_count = 0; iter_count < iterations; ++iter_count) {
-                z = z*z + c;
-                if (std::abs(z)>2.0) {
+                z = z * z + c;
+                if (std::norm(z)>4.0) {
                     break;
                 }
             }

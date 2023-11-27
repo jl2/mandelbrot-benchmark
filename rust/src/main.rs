@@ -25,7 +25,7 @@ fn mandelbrot() {
             let mut z = c; //Complex::new(0.0, 0.0);
             let mut iter_count = 0;
             
-            while (iter_count < iterations) && (z.norm() < 2.0) {
+            while (iter_count < iterations) && (z.norm_sqr() < 4.0) {
                 z = z * z + c;
                 iter_count += 1;
             }

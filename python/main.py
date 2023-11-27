@@ -4,6 +4,9 @@ import sys
 import math
 import cmath
 
+def norm(z):
+    return z.real * z.real + z.imag * z.imag
+
 def mandelbrot():
     width = 16000
     height = 6000

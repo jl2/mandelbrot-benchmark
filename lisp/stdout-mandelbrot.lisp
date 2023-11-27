@@ -15,14 +15,23 @@
 
 (in-package :stdout-mandelbrot)
 
+(declaim (optimize (speed 3)
+                     (space 3)
+                     (debug 0)
+                     (safety 0)
+                     (compilation-speed 3))
+         (inline norm)
+         (ftype (function ((complex (double-float))) double-float) norm))
+
 (defun mandelbrot ()
-  (declare (optimize (speed 3) (space 3) (debug 0) (safety 0)))
-  (let* ((stream t)
-         (width 1600)
-         (height 600)
+  "Compute mandelbrot set fractal and write to *standard-output*."
+
+  (let* ((stream *standard-output*)
+         (width 16000)
+         (height 6000)
          (min #C(-2.1d0 -1.2d0))
          (max #C(0.6d0 1.2d0))
-         (iterations 32)
+         (iterations 64)
          (colors "abcdefhij.-+*%#$@ ")
 
          ;; real increment per pixel
@@ -34,33 +43,42 @@
          (inc-imag (complex 0.0d0
                             (/ (imagpart (- max min))
                                height))))
-    (declare (dynamic-extent stream width height min max iterations colors inc-real inc-imag))
-    ;; imaginary part on the y axis
-    (loop
-      :for row :below height
-      :for row-val :of-type (complex (double-float)) = (+ min
-                                                          (* row inc-imag))
-        ;;:then (+ row-val inc-imag)
-      :do
 
-         ;; Real part on the x axis
-         (loop
-           :for col :below width
-           :for c :of-type (complex (double-float)) = (+ row-val
-                                                         (* col inc-real))
-             ;;:then (+ c inc-real)
-           :for iter-count = (loop
-                               :for current-iteration :upto iterations
-                               :for z :of-type (complex (double-float)) = c
-                                 :then (+ (* z z) c)
-                               :until (> (abs z) 2.0d0)
-                               :finally (return current-iteration))
-           :for color-idx :of-type fixnum = (floor (* (1- (length colors))
-                                                  iter-count)
-                                               iterations)
-           :do
-              (format stream "~a" (aref colors color-idx)))
-         (format stream "~%"))))
+    (declare (type fixnum width height iterations)
+             (type (complex (double-float)) min max inc-real inc-imag)
+             (type stream stream))
+    
+    ;; imaginary part on the y axis
+    (flet ((norm (z)
+             "Return squared absolute value of z"
+             (let ((rp (realpart z))
+                   (ip (imagpart z)))
+               (+ (* rp rp)
+                  (* ip ip)))))
+      (loop
+        :for row :of-type fixnum :below height
+        :for row-val :of-type (complex (double-float)) = (+ min (* row inc-imag))
+        :do
+
+           ;; Real part on the x axis
+           (loop
+             :for col fixnum :below width
+             :for c :of-type (complex (double-float)) = (+ row-val (* col inc-real))
+             :for iter-count :of-type fixnum = (loop
+                                        :for current-iteration :upto iterations
+                                        :for z :of-type (complex (double-float)) = c
+                                          :then (+ (* z z) c)
+                                        :until (> (norm z) 4.0)
+                                        ;;(> (abs z) 2.0)
+                                        :finally (return current-iteration))
+             :for color-idx :of-type fixnum = (floor (* (1- (length colors))
+                                        iter-count)
+                                     iterations)
+             :do
+                (format stream "~a" (aref colors color-idx)))
+
+           (format stream "~%"))
+      )))
 
 (defun main (args)
   (declare (ignorable args))
