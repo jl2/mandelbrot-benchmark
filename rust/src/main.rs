@@ -29,8 +29,7 @@ fn mandelbrot() {
                 z = z * z + c;
                 iter_count += 1;
             }
-            let color_index = (((colors.len()-1) * iter_count) as f64
-                               / iterations as f64).trunc() as usize;
+            let color_index = ((colors.len()-1) * iter_count) / iterations as usize;
             print!("{0}", match colors.chars().nth(color_index) {
                 Some(x) => x,
                 None    => ' '

@@ -1,3 +1,6 @@
-1600_600.txt
-16000_6000.txt
+1600_600*.txt
+16000_6000*.txt
+*.diff
 _build/
+
+mandelbrot-clang

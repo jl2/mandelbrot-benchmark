@@ -34,18 +34,27 @@ the results were "pixel perfect" for all of the mandelbrot images I
 checked with diff.
 
 # Versions
+
 g++ (Debian 13.2.0-5) 13.2.0
+
 Debian clang version 16.0.6 (16)
+
 rustc 1.62.0-nightly (879aff385 2022-04-20)
+
 SBCL 2.3.10.159-05f2adf1e
+
 go version go1.21.4 linux/amd64
+
 Python 3.11.6
+
+The OCaml toplevel, version 4.14.1
+
 
 # Timings
 At 16000x6000 and 64 iterations
 
 ## Clang++ Fastmath
-4.50user 0.01system 0:04.52elapsed 99%CPU (0avgtext+0avgdata 3264maxresident)k
+4.41user 0.00system 0:04.41elapsed 100%CPU (0avgtext+0avgdata 3264maxresident)k
 
 ## G++ Fastmath
 4.78user 0.01system **0:04.79elapsed** 99%CPU (0avgtext+0avgdata 3072maxresident)k
@@ -57,13 +66,13 @@ At 16000x6000 and 64 iterations
 7.99user 0.00system 0:07.99elapsed 99%CPU (0avgtext+0avgdata 3264maxresident)k
 
 ## Rust
-9.10user 0.02system 0:09.12elapsed 99%CPU (0avgtext+0avgdata 1920maxresident)k
+9.08user 0.01system 0:09.10elapsed 99%CPU (0avgtext+0avgdata 1728maxresident)k
 
-## SBCL with norm instead of (abs z)
+## SBCL
 9.60user 0.00system 0:09.61elapsed 99%CPU (0avgtext+0avgdata 54136maxresident)k
 
-## SBCL with (abs z)
-20.33user 0.01system **0:20.34elapsed** 99%CPU (0avgtext+0avgdata 52848maxresident)k
+## OCaml
+13.53user 0.00system 0:13.55elapsed 99%CPU (0avgtext+0avgdata 3840maxresident)k
 
 ## Go
 26.08user 22.32system **0:48.03elapsed** 100%CPU (0avgtext+0avgdata 3152maxresident)k

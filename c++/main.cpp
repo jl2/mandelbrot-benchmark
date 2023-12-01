@@ -29,8 +29,7 @@ void mandelbrot() {
                     break;
                 }
             }
-            const auto color_idx = std::trunc(double((colors.size()-1) * iter_count)
-                                              / iterations);
+            const auto color_idx = (colors.size()-1) * iter_count / iterations;
             std::cout << colors[color_idx];
         }
         std::cout << "\n";

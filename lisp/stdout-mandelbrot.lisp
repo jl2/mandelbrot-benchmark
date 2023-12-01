@@ -15,17 +15,9 @@
 
 (in-package :stdout-mandelbrot)
 
-(declaim (optimize (speed 3)
-                     (space 3)
-                     (debug 0)
-                     (safety 0)
-                     (compilation-speed 3))
-         (inline norm)
-         (ftype (function ((complex (double-float))) double-float) norm))
-
 (defun mandelbrot ()
   "Compute mandelbrot set fractal and write to *standard-output*."
-
+  (declare (optimize (speed 2) (space 2) (debug 0) (safety 0) (compilation-speed 2)))
   (let* ((stream *standard-output*)
          (width 16000)
          (height 6000)
@@ -44,10 +36,6 @@
                             (/ (imagpart (- max min))
                                height))))
 
-    (declare (type fixnum width height iterations)
-             (type (complex (double-float)) min max inc-real inc-imag)
-             (type stream stream))
-    
     ;; imaginary part on the y axis
     (flet ((norm (z)
              "Return squared absolute value of z"
@@ -55,23 +43,25 @@
                    (ip (imagpart z)))
                (+ (* rp rp)
                   (* ip ip)))))
+      (declare (inline norm)
+               (ftype (function ((complex (double-float))) double-float) norm))
+
       (loop
-        :for row :of-type fixnum :below height
+        :for row :below height
         :for row-val :of-type (complex (double-float)) = (+ min (* row inc-imag))
         :do
 
            ;; Real part on the x axis
            (loop
-             :for col fixnum :below width
+             :for col :below width
              :for c :of-type (complex (double-float)) = (+ row-val (* col inc-real))
-             :for iter-count :of-type fixnum = (loop
-                                        :for current-iteration :upto iterations
-                                        :for z :of-type (complex (double-float)) = c
-                                          :then (+ (* z z) c)
-                                        :until (> (norm z) 4.0)
-                                        ;;(> (abs z) 2.0)
-                                        :finally (return current-iteration))
-             :for color-idx :of-type fixnum = (floor (* (1- (length colors))
+             :for iter-count = (loop
+                                 :for current-iteration :upto iterations
+                                 :for z :of-type (complex (double-float)) = c
+                                   :then (+ (* z z) c)
+                                 :until (> (norm z) 4.0)
+                                 :finally (return current-iteration))
+             :for color-idx = (floor (* (1- (length colors))
                                         iter-count)
                                      iterations)
              :do
