@@ -49,9 +49,13 @@ Python 3.11.6
 
 The OCaml toplevel, version 4.14.1
 
+GNU Fortran (Debian 13.2.0-7) 13.2.0
 
 # Timings
 At 16000x6000 and 64 iterations
+
+Note: The Go and Fortran code isn't buffering output, so the timing is dominated by
+write() system call time 😒
 
 ## Clang++ Fastmath
 4.41user 0.00system 0:04.41elapsed 100%CPU (0avgtext+0avgdata 3264maxresident)k
@@ -76,6 +80,9 @@ At 16000x6000 and 64 iterations
 
 ## Go
 26.08user 22.32system **0:48.03elapsed** 100%CPU (0avgtext+0avgdata 3152maxresident)k
+
+## Fortran
+33.00user 19.77system 0:52.78elapsed 99%CPU (0avgtext+0avgdata 2112maxresident)k
 
 ## Python 3.11
 179.88user 0.13system **3:00.04elapsed** 99%CPU (0avgtext+0avgdata 9792maxresident)k

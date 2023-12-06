@@ -1,7 +1,7 @@
 program mandelbrot
   implicit none
-  integer, parameter :: width = 3200
-  integer, parameter :: height = 1200
+  integer, parameter :: width = 16000
+  integer, parameter :: height = 6000
   integer, parameter :: iterations = 64
   complex, parameter :: min = (-2.1, -1.2)
   complex, parameter :: max = (0.6, 1.2)
