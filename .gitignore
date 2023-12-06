@@ -2,5 +2,10 @@
 16000_6000*.txt
 *.diff
 _build/
-
+*.o
+*.hi
+*.txt
+*.s
+mandelbrot-debug
+mandelbrot
 mandelbrot-clang
