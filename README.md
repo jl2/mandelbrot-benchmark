@@ -24,10 +24,6 @@ In the disassembly, I noticed Common Lisp's complex (abs z) is calling the
 `(> (+ (* (realpart z) (realpart z)) (* (imagpart z) (imagpart z))) 4.0d0)`
 speeds it up by almost 100%.
 
-Doing a similar transformation to the C++ code actually *slows it down*.
-The Clang++ -ffast-math version goes up to ~8 seconds, and the non-ffast-math
-version goes up to over 20 seconds.
-
 ## -ffastmath
 Despite "-ffastmath" being possibly "dangerous" for giving incorrect results,
 the results were "pixel perfect" for all of the mandelbrot images I
