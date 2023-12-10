@@ -7,7 +7,7 @@ program mandelbrot
   complex, parameter :: max = (0.6, 1.2)
 
   complex, parameter :: inc_real = cmplx( real(max - min)/width, 0.0 )
-  complex, parameter  :: inc_imag = cmplx( 0.0, aimag(max - min)/height )
+  complex, parameter :: inc_imag = cmplx( 0.0, aimag(max - min)/height )
 
   character (len=18) :: colors
   complex :: row_val
@@ -17,6 +17,7 @@ program mandelbrot
   complex :: c
   integer :: color_idx
   integer :: iter_count
+
   real abs2
   abs2( z ) = real(z)**2 + aimag(z)**2
 
