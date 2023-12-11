@@ -22,19 +22,19 @@ end norm;
     Iterations : Natural := 64;
     Min : Complex := (-2.1, -1.2);
     Max : Complex := (0.6, 1.2);
-    Inc_Imag : Complex;
-    Inc_Real : Complex;
+    Diff : Complex := (Max - Min);
+    Inc_Imag : Complex := (0.0, diff.Im / Long_Float(Height));
+    Inc_Real : Complex := (diff.Re / Long_Float(Width), 0.0);
     Row_Val : Complex;
     C : Complex;
     Iter_Count : Natural;
     Z : Complex := (0.0, 0.0);
     Colors : String := "abcdefhij.-+*%#$@ ";
     Color_Idx : Natural;
-    Diff : Complex := (Max - Min);
+
     package TIO renames Ada.Text_IO;
 begin
-    Inc_Real := (diff.Re / Long_Float(Width), 0.0);
-    Inc_Imag := (0.0, diff.Im / Long_Float(Height));
+
     for row in 0..height loop
         Row_Val := Min + Long_float(Row) * Inc_Imag;
         for col in 0..Width loop
