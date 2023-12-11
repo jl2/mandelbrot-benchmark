@@ -47,10 +47,14 @@ The OCaml toplevel, version 4.14.1
 
 GNU Fortran (Debian 13.2.0-7) 13.2.0
 
+GNAT 13.2.0
+
+Free Pascal Compiler version 3.2.2+dfsg-22 [2023/09/04] for x86_64
+
 # Timings
 At 16000x6000 and 64 iterations
 
-Note: The Go and Fortran code isn't buffering output, so the timing is dominated by
+Note: Ada, Go and Fortran aren't buffering output, so the timing is dominated by
 write() system call time 😒
 
 ## Clang++ Fastmath
@@ -73,6 +77,9 @@ write() system call time 😒
 
 ## OCaml
 13.53user 0.00system 0:13.55elapsed 99%CPU (0avgtext+0avgdata 3840maxresident)k
+
+## Ada
+16.18user 19.09system 0:35.28elapsed 99%CPU (0avgtext+0avgdata 3840maxresident)k
 
 ## Go
 26.08user 22.32system **0:48.03elapsed** 100%CPU (0avgtext+0avgdata 3152maxresident)k

@@ -6,6 +6,7 @@ _build/
 *.hi
 *.txt
 *.s
+*.ali
 mandelbrot-debug
 mandelbrot
 mandelbrot-clang
