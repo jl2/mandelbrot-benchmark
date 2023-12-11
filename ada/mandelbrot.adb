@@ -29,16 +29,16 @@ end norm;
     Iter_Count : Natural;
     Z : Complex := (0.0, 0.0);
     Colors : String := "abcdefhij.-+*%#$@ ";
-    Color_Idx : Natural;                  
+    Color_Idx : Natural;
     Diff : Complex := (Max - Min);
     package TIO renames Ada.Text_IO;
 begin
     Inc_Real := (diff.Re / Long_Float(Width), 0.0);
-    Inc_Imag := (0.0, diff.Im / Long_Float(Height));    
+    Inc_Imag := (0.0, diff.Im / Long_Float(Height));
     for row in 0..height loop
         Row_Val := Min + Long_float(Row) * Inc_Imag;
         for col in 0..Width loop
-            C := Row_Val + Long_Float(Col) * Inc_Real;      
+            C := Row_Val + Long_Float(Col) * Inc_Real;
             Iter_Count := 0;
             Z := C;
             Inner_Loop:
@@ -48,10 +48,10 @@ begin
                 if ((Norm(Z)>4.0) or (Iter_Count > Iterations)) then
                     exit Inner_Loop;
                 end if;
-            end loop Inner_loop;    
+            end loop Inner_loop;
             Color_Idx := 1 + ((Colors'Length-1) * Iter_Count) / Iterations;
             Tio.Put(Colors(Color_Idx));
-        end loop;   
+        end loop;
         Tio.New_Line;
     end loop;
 end Mandelbrot;
