@@ -81,6 +81,9 @@ write() system call time 😒
 ## Ada
 16.18user 19.09system 0:35.28elapsed 99%CPU (0avgtext+0avgdata 3840maxresident)k
 
+## FreePascal
+40.83user 0.06system 0:40.90elapsed 99%CPU (0avgtext+0avgdata 384maxresident)k
+
 ## Go
 26.08user 22.32system **0:48.03elapsed** 100%CPU (0avgtext+0avgdata 3152maxresident)k
 

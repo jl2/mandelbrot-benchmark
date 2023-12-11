@@ -1,11 +1,11 @@
 program mandelbrot;
 uses uComplex, math;
 const
-   width           = 1600;
-   height          = 600;
+   width           = 16000;
+   height          = 6000;
    min  : complex  = (re : -2.1; im : -1.2);
    max  : complex  = (re : 0.6; im : 1.2);
-   iterations      = 32;
+   iterations      = 64;
    colors : string = 'abcdefhij.-+*%#$@ ';
 
 var
@@ -35,7 +35,7 @@ var
          for col := 0 to width do
          begin
             c:= row_val + col * inc_real;
-            z := cinit(0.0, 0.0);
+            z := c;
             iter_count := 0;
             repeat
                iter_count := iter_count + 1;
